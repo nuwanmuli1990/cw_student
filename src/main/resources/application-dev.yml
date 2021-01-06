@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.175.20:3306/cw_01
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: muli
+    password: Muli@123
