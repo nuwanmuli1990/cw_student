@@ -9,6 +9,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,6 +40,13 @@ public class StudentController {
 	public List<StudentResponse> getStudents() {
 		return studentService.getStudents();
 	}
+	
+	@GetMapping(value = "/students/{id}")
+	@ResponseBody
+	public StudentResponse getStudent(@PathVariable Long id) {
+		return studentService.getStudent(id);
+	}
+	
 	
 	@RequestMapping(value ="/authenticate",method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {

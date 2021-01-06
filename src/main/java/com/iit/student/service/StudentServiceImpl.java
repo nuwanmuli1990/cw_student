@@ -2,6 +2,7 @@ package com.iit.student.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,4 +33,18 @@ public class StudentServiceImpl implements StudentService {
 		return response;
 	}
 
+	@Override
+	public StudentResponse getStudent(Long id) {
+		
+		StudentResponse response = new StudentResponse();
+		Optional<Student> optionalStudent = studentRepository.findById(id);
+		if(optionalStudent.isPresent()) {
+			
+			response.setId(optionalStudent.get().getId());
+			response.setName(optionalStudent.get().getName());
+			response.setEmail(optionalStudent.get().getEmail());
+			response.setContact(optionalStudent.get().getContact());
+		}
+		return response;
+	}
 }

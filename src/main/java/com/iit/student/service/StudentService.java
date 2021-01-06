@@ -7,4 +7,6 @@ import com.iit.student.models.StudentResponse;
 public interface StudentService {
 
 	List<StudentResponse> getStudents();
+	
+	StudentResponse getStudent(Long id);
 }
