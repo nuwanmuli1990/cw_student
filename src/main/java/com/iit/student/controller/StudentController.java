@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.iit.student.models.AuthenticatioResponse;
 import com.iit.student.models.AuthenticationRequest;
+import com.iit.student.models.CourseResponse;
 import com.iit.student.models.StudentResponse;
 import com.iit.student.service.MyUserDetailsService;
 import com.iit.student.service.StudentService;
@@ -47,6 +48,11 @@ public class StudentController {
 		return studentService.getStudent(id);
 	}
 	
+	@GetMapping(value = "/students/{id}/course")
+	@ResponseBody
+	public CourseResponse getStudentCourse(@PathVariable Long id) {
+		return studentService.getStudentCourseDetails(id);
+	}
 	
 	@RequestMapping(value ="/authenticate",method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
