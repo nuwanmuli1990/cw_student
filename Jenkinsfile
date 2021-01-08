@@ -41,6 +41,7 @@ pipeline {
         stage('Deploy cluster') {
               steps {
                   sh 'mkdir -p /var/lib/jenkins/.kube/'
+                  sh 'eval $(minikube -p minikube docker-env)'
                   sh '''cat <<EOF > deployment.yaml
 apiVersion: apps/v1                  
 kind: Deployment
@@ -61,10 +62,11 @@ spec:
       containers:
       - name: ${APP_NAME}
         image: ${IMAGE_TAG}
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Never
         env:
         - name: "PORT"
           value: "${PORT}"
+      restartPolicy: Never
 EOF'''
                sh 'kubectl apply -f deployment.yaml'
                sh '''cat <<EOF > service.yaml
