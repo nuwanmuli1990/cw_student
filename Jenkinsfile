@@ -41,7 +41,6 @@ pipeline {
         stage('Deploy cluster') {
               steps {
                   sh 'mkdir -p /var/lib/jenkins/.kube/'
-                  sh 'eval $(minikube -p minikube docker-env)'
                   sh '''cat <<EOF > deployment.yaml
 apiVersion: apps/v1                  
 kind: Deployment
