@@ -63,7 +63,7 @@ spec:
         image: ${IMAGE_TAG}
         env:
         - name: "PORT"
-          value: "${PORT}"
+          value: 50000
 EOF'''
                sh 'kubectl apply -f deployment.yaml'
                sh '''cat <<EOF > service.yaml
