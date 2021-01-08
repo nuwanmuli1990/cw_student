@@ -80,7 +80,7 @@ spec:
       protocol: TCP
       port: ${PORT}
       targetPort: ${PORT}
-      nodePort: 5000
+      nodePort: 50000
       
 EOF'''
                sh 'kubectl apply -f service.yaml'               
