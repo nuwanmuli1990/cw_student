@@ -72,6 +72,7 @@ kind: Service
 metadata:
   name: ${APP_NAME}-service
 spec:
+  type: NodePort
   selector:
     app: ${APP_NAME}-deploy
   ports:
@@ -79,8 +80,6 @@ spec:
       protocol: TCP
       port: ${PORT}
       targetPort: ${PORT}
-  externalIPs:
-    - 192.168.175.20
 EOF'''
                sh 'kubectl apply -f service.yaml'               
                   }
