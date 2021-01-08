@@ -78,8 +78,8 @@ spec:
   ports:
     - name: http
       protocol: TCP
-      port: ${PORT}
-      targetPort: ${PORT}
+      port: 80
+      targetPort: 50000
 EOF'''
                sh 'kubectl apply -f service.yaml'               
                   }
