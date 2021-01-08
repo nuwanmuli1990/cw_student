@@ -76,8 +76,7 @@ spec:
   selector:
     app: ${APP_NAME}-deploy
   ports:
-    - name: http
-      protocol: TCP
+    - protocol: TCP
       port: 80
       targetPort: 50000
 EOF'''
