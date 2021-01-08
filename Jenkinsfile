@@ -65,7 +65,6 @@ spec:
         env:
         - name: "PORT"
           value: "${PORT}"
-      restartPolicy: Never
 EOF'''
                sh 'kubectl apply -f deployment.yaml'
                sh '''cat <<EOF > service.yaml
