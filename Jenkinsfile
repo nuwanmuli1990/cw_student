@@ -63,7 +63,7 @@ spec:
         image: ${IMAGE_TAG}
         env:
         - name: "PORT"
-          value: "50000"
+          value: "${PORT}"
 EOF'''
                sh 'kubectl apply -f deployment.yaml'
                sh '''cat <<EOF > service.yaml
@@ -76,9 +76,12 @@ spec:
   selector:
     app: ${APP_NAME}-deploy
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 50000
+    - name: http
+      protocol: TCP
+      port: ${PORT}
+      targetPort: ${PORT}
+      nodePort: 5000
+      
 EOF'''
                sh 'kubectl apply -f service.yaml'               
                   }
