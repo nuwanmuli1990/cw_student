@@ -61,6 +61,7 @@ spec:
       containers:
       - name: ${APP_NAME}
         image: ${IMAGE_TAG}
+        imagePullPolicy: Never
         env:
         - name: "PORT"
           value: "${PORT}"
