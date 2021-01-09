@@ -37,8 +37,9 @@ pipeline {
 
 					sh 'docker build -t muli1990/cw_cloud/${IMAGE_TAG}:latest .'
 					withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-          			sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-					//sh 'docker push muli1990/cw_cloud/${IMAGE_TAG}:latest'
+			          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+			          sh 'docker push shanem/spring-petclinic:latest'
+			        }
 					
 
 		  //sh 'docker image rm ${IMAGE_TAG}'
