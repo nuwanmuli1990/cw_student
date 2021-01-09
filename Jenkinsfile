@@ -4,7 +4,8 @@ pipeline {
  	   APP_NAME = "cw01student"
      BRANCH_NAME = "dev_st_branch"
      PORT = "5070"
-   	 IMAGE_TAG = "${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+   	 //IMAGE_TAG = "${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+   	 IMAGE_TAG = "${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
                 }
     agent any 
     options {
@@ -38,7 +39,7 @@ pipeline {
 					sh 'docker build -t muli1990/cw_cloud/${IMAGE_TAG}:latest .'
 					withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
 			          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-			          sh 'docker push shanem/spring-petclinic:latest'
+			          sh 'docker push muli1990/cw_cloud/${IMAGE_TAG}:latest'
 			        }
 					
 
