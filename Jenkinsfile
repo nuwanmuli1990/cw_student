@@ -71,7 +71,6 @@ spec:
       containers:
       - name: ${APP_NAME}
         image: muli1990/cw_cloud:${IMAGE_TAG}
-        imagePullPolicy: Never
         env:
         - name: "PORT"
           value: "${PORT}"
