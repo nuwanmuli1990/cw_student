@@ -35,7 +35,11 @@ pipeline {
 					sh 'minikube -p minikube docker-env'
 					sh 'docker build --tag=${APP_NAME} dockerImage/.'
 					sh 'docker tag ${APP_NAME} ${IMAGE_TAG}'
+					sh 'docker login -muli1990 user1 -p nuwan@0318'
+					sh 'docker push ${IMAGE_TAG}'
 					
+		  sh 'docker image rm ${IMAGE_TAG}'
+          sh 'docker image rm ${APP_NAME}'		
           sh 'rm -rf dockerImage/'          
         }
         }
@@ -66,6 +70,9 @@ spec:
         env:
         - name: "PORT"
           value: "${PORT}"
+      imagePullSecrets:
+      - name: my-sec-reg created
+      
 EOF'''
                sh 'kubectl apply -f deployment.yaml'
                sh '''cat <<EOF > service.yaml
