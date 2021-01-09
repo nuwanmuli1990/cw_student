@@ -75,7 +75,7 @@ spec:
         - name: "PORT"
           value: "${PORT}"
       imagePullSecrets:
-      - name: my-sec-reg created
+      - name: my-sec-reg
       
 EOF'''
                sh 'kubectl apply -f deployment.yaml'
@@ -85,10 +85,12 @@ kind: Service
 metadata:
   name: ${APP_NAME}-service
 spec:
+  type: NodePort
   selector:
     app: ${APP_NAME}-deploy
   ports:
     - name: http
+      nodePort: 30100
       protocol: TCP
       port: ${PORT}
       targetPort: ${PORT}
