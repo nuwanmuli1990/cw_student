@@ -30,9 +30,9 @@ pipeline {
         }
 		stage('Building & Deploy Image') {
 		    steps{
-					//sh 'mkdir -p dockerImage'
-					//sh 'cp Dockerfile dockerImage/'
-					//sh 'cp target/student-0.0.1-SNAPSHOT.jar dockerImage/'
+					sh 'mkdir -p dockerImage'
+					sh 'cp Dockerfile dockerImage/'
+					sh 'cp target/student-0.0.1-SNAPSHOT.jar dockerImage/'
 					//sh 'docker build --tag=${APP_NAME} dockerImage/.'
 					//sh 'docker tag ${APP_NAME} ${IMAGE_TAG}'
 
