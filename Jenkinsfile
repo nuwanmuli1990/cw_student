@@ -36,10 +36,10 @@ pipeline {
 					//sh 'docker build --tag=${APP_NAME} dockerImage/.'
 					//sh 'docker tag ${APP_NAME} ${IMAGE_TAG}'
 
-					sh 'docker build -t muli1990/cw_cloud/${IMAGE_TAG}:latest dockerImage/.'
+					sh 'docker build -t muli1990/cw_cloud:${IMAGE_TAG} dockerImage/.'
 					withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
 			          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-			          sh 'docker push muli1990/cw_cloud/${IMAGE_TAG}:latest'
+			          sh 'docker push muli1990/cw_cloud:${IMAGE_TAG}'
 			        }
 					
 
@@ -70,7 +70,7 @@ spec:
     spec:
       containers:
       - name: ${APP_NAME}
-        image: muli1990/cw_cloud/${IMAGE_TAG}:latest
+        image: muli1990/cw_cloud:${IMAGE_TAG}
         imagePullPolicy: Never
         env:
         - name: "PORT"
