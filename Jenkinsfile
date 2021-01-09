@@ -34,7 +34,7 @@ pipeline {
 					sh 'cp target/student-0.0.1-SNAPSHOT.jar dockerImage/'
 					sh 'docker build --tag=${APP_NAME} dockerImage/.'
 					sh 'docker tag ${APP_NAME} ${IMAGE_TAG}'
-					sh 'docker login -muli1990 user1 -p nuwan@0318'
+					sh 'docker login -u muli1990 -p nuwan@0318'
 					sh 'docker push ${IMAGE_TAG}'
 					
 		  sh 'docker image rm ${IMAGE_TAG}'
