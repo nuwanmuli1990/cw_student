@@ -29,18 +29,21 @@ pipeline {
         }
 		stage('Building & Deploy Image') {
 		    steps{
-					sh 'mkdir -p dockerImage'
-					sh 'cp Dockerfile dockerImage/'
-					sh 'cp target/student-0.0.1-SNAPSHOT.jar dockerImage/'
-					sh 'minikube -p minikube docker-env'
-					sh 'docker build --tag=${APP_NAME} dockerImage/.'
-					sh 'docker tag ${APP_NAME} ${IMAGE_TAG}'
-					sh 'docker login -muli1990 user1 -p nuwan@0318'
-					sh 'docker push ${IMAGE_TAG}'
+					//sh 'mkdir -p dockerImage'
+					//sh 'cp Dockerfile dockerImage/'
+					//sh 'cp target/student-0.0.1-SNAPSHOT.jar dockerImage/'
+					//sh 'docker build --tag=${APP_NAME} dockerImage/.'
+					//sh 'docker tag ${APP_NAME} ${IMAGE_TAG}'
 					
-		  sh 'docker image rm ${IMAGE_TAG}'
-          sh 'docker image rm ${APP_NAME}'		
-          sh 'rm -rf dockerImage/'          
+					sh 'docker build -t muli1990/cw_cloud/${IMAGE_TAG}:latest .'
+					withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+          			sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+					//sh 'docker push muli1990/cw_cloud/${IMAGE_TAG}:latest'
+					
+					
+		  //sh 'docker image rm ${IMAGE_TAG}'
+          //sh 'docker image rm ${APP_NAME}'		
+          //sh 'rm -rf dockerImage/'          
         }
         }
         stage('Deploy cluster') {
@@ -65,7 +68,7 @@ spec:
     spec:
       containers:
       - name: ${APP_NAME}
-        image: ${IMAGE_TAG}
+        image: muli1990/cw_cloud/${IMAGE_TAG}:latest
         imagePullPolicy: Never
         env:
         - name: "PORT"
