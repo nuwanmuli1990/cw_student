@@ -89,13 +89,10 @@ spec:
   selector:
     app: ${APP_NAME}-deploy
   ports:
-    - name: http
-      nodePort: 30100
+    - nodePort: 30100
       protocol: TCP
       port: ${PORT}
       targetPort: ${PORT}
-  externalIPs:
-    - 192.168.175.20
 EOF'''
                sh 'kubectl apply -f service.yaml'               
                   }
