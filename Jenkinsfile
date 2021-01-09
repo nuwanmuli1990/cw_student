@@ -32,7 +32,6 @@ pipeline {
 					sh 'mkdir -p dockerImage'
 					sh 'cp Dockerfile dockerImage/'
 					sh 'cp target/student-0.0.1-SNAPSHOT.jar dockerImage/'
-					sh 'minikube -p minikube docker-env'
 					sh 'docker build --tag=${APP_NAME} dockerImage/.'
 					sh 'docker tag ${APP_NAME} ${IMAGE_TAG}'
 					sh 'docker login -muli1990 user1 -p nuwan@0318'
