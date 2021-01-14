@@ -22,13 +22,13 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Deliver') {
+        stage('Run Build') {
           steps {
                sh 'bash ./jenkins/scripts/runtest.sh'
                sh 'bash ./jenkins/scripts/kill.sh'
          }
         }
-		stage('Building & Deploy Image') {
+		stage('Docker Build & Docker Push') {
 		    steps{
 					sh 'mkdir -p dockerImage'
 					sh 'cp Dockerfile dockerImage/'
