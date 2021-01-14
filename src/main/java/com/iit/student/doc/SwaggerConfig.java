@@ -46,9 +46,10 @@ public class SwaggerConfig {
 	
 	public Docket api(SwaggerConfigProperties swaggerConfigProperties) {
 		return new Docket(DocumentationType.SWAGGER_2)
+				.host("iit.cloud.com")
 				.apiInfo(apiInfo(swaggerConfigProperties))
 				.globalOperationParameters(defaultParamaters(swaggerConfigProperties))
-				.groupName("ETF Core Service")
+				.groupName("Cloud Computing")
 				.useDefaultResponseMessages(false)
 				.apiInfo(apiInfo()).select()
 				.apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
