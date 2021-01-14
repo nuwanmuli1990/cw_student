@@ -78,7 +78,7 @@ public class SwaggerConfig {
     }
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("Etf Meta Service Documentation").description("Etf Meta Service REST API Documentation")
+		return new ApiInfoBuilder().title("Cloud service").description("Cloud service")
 				.version("1.0").build();
 	}
 	
