@@ -77,7 +77,7 @@ public class StudentServiceImpl implements StudentService {
 		if(optionalStudent.isPresent()) {
 			courseId = optionalStudent.get().getCourse().getId();
 		}
-		String url = "http://192.168.175.20:5080/courses/"+courseId;
+		String url = "http://iit.cloud.com/cs/courses/"+courseId;
 		ObjectMapper mapper = new ObjectMapper();
 		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 		
